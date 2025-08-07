@@ -1,3 +1,78 @@
+namespace ToDoList.Models;
+
+public static class BD
+{
+     private static string _connectionString = @"Server=localhost;DataBase=NombreBase;Integrated Security = True;TrustServerCertificate = True;";
+
+     public static int Login(string Username, string contraseña)
+    {
+        int ID=-1;
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT ID FROM Usuarios WHERE email = @pEmail AND contraseña = @pContraseña";
+            ID = connection.QueryFirstOrDefault<int>(query, new {pUsername = Username, pContraseña = contraseña});
+        }
+        return ID;
+
+    }
+
+     public static void Registro()
+    {
+        // no se bien si es void o devuelve algo, lo que si, el IdUsuario no hay q mandarlo de antes, es decir a la hora de crear el objeto (la base de datos), va a pre definir el ID. 
+    }
+
+    public static Tarea AgregarTarea ()
+    {
+       //lo mismo que con registro, cuando agregamos la tarea, el ID lo auto genera la base de datos (IdTarea)
+        // el id del usuario lo tiene la session (no se lo pedimos, osea cuando vamos a completar la parte de IdUsuario, usamos los valores registrados en la session, ya que el que quiere agregar la tarea es como el "Autor")
+    }
+
+    public static void ModificarTarea (int IdTarea) 
+    {
+        // tenemos que hacer qu ete mande a un formulario de las partes que quiere cambiar
+        //Ademas esto lo tenemos que hacer con formualrio y que el input aparezca antes ya cambiado
+    }
+
+    public static void EliminarTarea (int IdTarea) 
+    {
+
+    }
+
+    public static Tarea VerTarea (int IdTarea) 
+    {
+        return
+    }
+
+    public static List<Tarea> VerTareas (int IdUsuario) 
+    {
+        //El Id hay que recuperarlo de le session
+        
+    }
+
+    public static void MarcasTareaComoFinalizada (int IdTarea) 
+    {
+
+    }
+
+    public static void ActualizarFecha (int IdUsuario) 
+    {
+        
+    }
+
+
+
+
+
+    
+
+
+  
+}
+
+
+
+
+
 // clase estatica, es una unica BD. Tarea y Usuarios pueden tener muchos.  Va  atener muchos metodos, oseas de tareas y usuarios. Login x ejemplo (usuario y contraseña) mejor estaria bueno que devuelva el Usuario ( si devuelve algo nulo es que no lo encontro pero si lo encuentra tenes ya todo el objeto). Dsp de login hay que registrarse que le llega todo el objeto usuario, pero el Id va a estar vacio, ni se manda a la BD xq lo auto genera (es un void no devuelve nada). Agregar tareas , se le manda el objeto del tipo tarea, que tiene el id del usuario de session, el id de tarea lo msimo que registro, se pone solo.  Despues modificar tarea que necesita el ID de la tarea para modificarlo. Eliminar tarea que solo te interesa el ID de la tarea, no hace falta cargar todo tarea.id. Ver tarea tmb hay que tenerlo que tambien tiene que tener el id
 // en el modificar tarea te manda al formualrio de tarea pero queres que la info ya esta cargada de ante mano, no tener que completar todo, esto te devuelve el objeto tarea (osea mostrar), para poder enseñarla, pero todas las anteriores son void. 
 //Dsp esta ver tareas, al que solo le podrias mandar el Id de Usuario, ya que con eso es suficiente para poder ver todas las tareas de ese usuario (La que esta logeada, osea hay que recuperarlo por session)

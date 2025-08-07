@@ -16,5 +16,46 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         return View();
+    } 
+
+    public IActionResult VerTarea ()
+    {
+         return View();
     }
+
+    public IActionResult NuevaTarea ()
+    {
+         return View();   
+    }
+
+        public IActionResult NuevaTareaGuardar ()// aca todo lo de la tarea
+    {
+         return View();  //todo de la tarea, otra vez el ID lo auto genera 
+    }
+
+        public IActionResult ModificarTarea ()
+    {
+         return View();   
+    }
+
+        public IActionResult ModificarTareaGuardar () //todo lo modificado
+    {
+         return View();   
+    }
+
+        public IActionResult EliminarTarea ()
+    {
+         return View();   
+    }
+
+       public IActionResult FinalizarTarea ()
+    {
+         return View();   
+    }
+    
+
+
+
+
+
 }
