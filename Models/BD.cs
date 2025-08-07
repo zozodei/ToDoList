@@ -1,62 +1,99 @@
+using Microsoft.Data.SqlClient;
+using Dapper;
 namespace ToDoList.Models;
 
 public static class BD
 {
-     private static string _connectionString = @"Server=localhost;DataBase=NombreBase;Integrated Security = True;TrustServerCertificate = True;";
+     private static string _connectionString = @"Server=localhost;DataBase=ToDoList;Integrated Security = True;TrustServerCertificate = True;";
 
-     public static int Login(string Username, string contraseña)
+     public static int Login(string Username, string Contraseña)
     {
         int ID=-1;
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT ID FROM Usuarios WHERE email = @pEmail AND contraseña = @pContraseña";
-            ID = connection.QueryFirstOrDefault<int>(query, new {pUsername = Username, pContraseña = contraseña});
+            string query = "SELECT ID FROM Usuarios WHERE email = @pUsername AND contraseña = @pContraseña";
+            ID = connection.QueryFirstOrDefault<int>(query, new {pUsername = Username, pContraseña = Contraseña});
         }
         return ID;
 
     }
 
-     public static void Registro()
+     public static void Registro(Usuario User)
     {
-        // no se bien si es void o devuelve algo, lo que si, el IdUsuario no hay q mandarlo de antes, es decir a la hora de crear el objeto (la base de datos), va a pre definir el ID. 
+        string query = "INSERT INTO Usuario (IdUsuario, Nombre, Apellido, Username, Foto, FechaUltimoInicio, Contraseña) VALUES (@pIdUsuario, @pNombre, @pApellido, @pUsername, @pFoto, @pFechaUltimoInicio, @pContraseña)";
+        using (SqlConnection connection = new SqlConnection (_connectionString))
+        {
+            connection.Execute(query, new {pIdUsuario = User.IdUsuario, pNombre = User.Nombre ,pApellido = User.Apellido, pUsername = User.Username, pFoto = User.Foto, pFechaUltimoInicio = User.FechaUltimoInicio, pContraseña = User.Contraseña });
+        }
     }
 
-    public static Tarea AgregarTarea ()
+    public static void AgregarTarea (Tarea tarea)
     {
+       string query = "INSERT INTO Tarea (IdTarea, Titulo, Descripcion, FechaTarea, Finalizado) VALUES (@pIdTarea, @pTitulo, @pDescrpcion, @pFechaTarea, @pFinalizado)";
+        using (SqlConnection connection = new SqlConnection (_connectionString))
+        {
+            connection.Execute(query, new {pIdTarea = tarea.IdTarea, pTitulo = tarea.Titulo ,pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = tarea.Finalizado});
+        }
        //lo mismo que con registro, cuando agregamos la tarea, el ID lo auto genera la base de datos (IdTarea)
         // el id del usuario lo tiene la session (no se lo pedimos, osea cuando vamos a completar la parte de IdUsuario, usamos los valores registrados en la session, ya que el que quiere agregar la tarea es como el "Autor")
     }
 
-    public static void ModificarTarea (int IdTarea) 
+    public static void ModificarTarea (int IdTarea, ) 
     {
-        // tenemos que hacer qu ete mande a un formulario de las partes que quiere cambiar
-        //Ademas esto lo tenemos que hacer con formualrio y que el input aparezca antes ya cambiado
+        //No sabemos 
     }
 
     public static void EliminarTarea (int IdTarea) 
     {
-
+        string query = "DELETE FROM Tarea WHERE IdTarea = @IdTarea";
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query, new {pIdTarea = IdTarea});
+        }
     }
 
     public static Tarea VerTarea (int IdTarea) 
     {
-        return
-    }
+        Tarea TareaVer;
 
-    public static List<Tarea> VerTareas (int IdUsuario) 
-    {
-        //El Id hay que recuperarlo de le session
+         using (SqlConnection connection = new SqlConnection (_connectionString)) 
+        {
+                 string query = "SELECT * FROM Tarea WHERE IdTarea = @IdTarea";
+                TareaVer = connection.Query<Tarea>(query, new { IdTarea }).ToTarea();    // no sabemos como poner esto hay qye revisar. 
+        }
         
+
+       
+    } 
+
+    public static List<Tarea> LevantarTareas (int IdUsuario) 
+    {
+        List<Tarea> tareas = new List<Tarea> ();
+        using (SqlConnection connection = new SqlConnection (_connectionString)) 
+        {
+                string query = "SELECT * FROM Tarea WHERE IdUsuario = @IdUsuario";
+                tareas = connection.Query<Tarea>(query, new { IdUsuario }).ToList();    
+        }
+
+        return tareas;  
     }
 
-    public static void MarcasTareaComoFinalizada (int IdTarea) 
+    public static void MarcasTareaComoFinalizada (Tarea tarea) 
     {
-
+        string query = "UPDATE Usuario SET Finalizado = 1 WHERE IdTarea = @tarea.IdTarea";
+         using (SqlConnection connection = new SqlConnection (_connectionString)) 
+        {
+             connection.Execute(query, new {pIdTarea = tarea.IdTarea, pTitulo = tarea.Titulo ,pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = tarea.Finalizado});
+        }
     }
 
-    public static void ActualizarFecha (int IdUsuario) 
+    public static void ActualizarFecha (Usuario User) 
     {
-        
+        string query = "UPDATE Usuario SET FechaUltimoInicio = GETDATE() WHERE IdUsuario = @User.IdUsuario";
+         using (SqlConnection connection = new SqlConnection (_connectionString)) 
+        {
+          connection.Execute(query, new {pIdUsuario = User.IdUsuario, pNombre = User.Nombre ,pApellido = User.Apellido, pUsername = User.Username, pFoto = User.Foto, pFechaUltimoInicio = User.FechaUltimoInicio, pContraseña = User.Contraseña });        }
+
     }
 
 
