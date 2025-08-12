@@ -33,13 +33,16 @@ public static class BD
         {
             connection.Execute(query, new {pIdTarea = tarea.IdTarea, pTitulo = tarea.Titulo ,pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = tarea.Finalizado});
         }
-       //lo mismo que con registro, cuando agregamos la tarea, el ID lo auto genera la base de datos (IdTarea)
-        // el id del usuario lo tiene la session (no se lo pedimos, osea cuando vamos a completar la parte de IdUsuario, usamos los valores registrados en la session, ya que el que quiere agregar la tarea es como el "Autor")
     }
 
-    public static void ModificarTarea (int IdTarea, ) 
+    public static void ModificarTarea (Tarea tarea) 
     {
-        //No sabemos 
+         string query = "UPDATE Tarea SET Titulo = @tarea.Titulo, Descripcion = @tarea.Descripcion, FechaTarea = @tarea.FechaTarea, Finalizado = @tarea.Finalizado"
+
+         using (SqlConnection connection = new SqlConnection(_connectionString))
+         {
+            connection.Execute (query, new {pTitulo = tarea.Titulo ,pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = tarea.Finalizado})
+         }
     }
 
     public static void EliminarTarea (int IdTarea) 
@@ -58,9 +61,9 @@ public static class BD
          using (SqlConnection connection = new SqlConnection (_connectionString)) 
         {
                  string query = "SELECT * FROM Tarea WHERE IdTarea = @IdTarea";
-                TareaVer = connection.Query<Tarea>(query, new { IdTarea }).ToTarea();    // no sabemos como poner esto hay qye revisar. 
-        }
-       
+                TareaVer = connection.QueryFirstOrDefault<Tarea>(query, new { pIdTarea = IdTarea });    // no sabemos como poner esto hay qye revisar. 
+        } 
+        return TareaVer;
     } 
 
     public static List<Tarea> LevantarTareas (int IdUsuario) 
@@ -92,14 +95,6 @@ public static class BD
           connection.Execute(query, new {pIdUsuario = User.IdUsuario, pNombre = User.Nombre ,pApellido = User.Apellido, pUsername = User.Username, pFoto = User.Foto, pFechaUltimoInicio = User.FechaUltimoInicio, pContraseña = User.Contraseña });        }
 
     }
-
-
-
-
-
-    
-
-
   
 }
 

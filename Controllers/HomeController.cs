@@ -20,11 +20,14 @@ public class HomeController : Controller
 
     public IActionResult VerTarea (int IdTarea)
     {
-        return View();
+        Tarea TareaVer = BD.VerTarea(IdTarea);
+        ViewBag.Tarea = TareaVer;
+        return View("VerTareas.cshtml");
     }
 
-    public IActionResult NuevaTarea ()
+    public IActionResult NuevaTarea (Tarea Tarea)
     {
+        BD.AgregarTarea(Tarea);
         return View();   
     }
 

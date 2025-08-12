@@ -31,7 +31,7 @@ public class AccountController : Controller
 
     public IActionResult LoginGuardar() 
     {
-
+        
         return View ("Index"); //no va asi pero lo pongo para que no tire error
     }
 
