@@ -18,39 +18,39 @@ public class HomeController : Controller
         return View();
     } 
 
-    public IActionResult VerTarea ()
+    public IActionResult VerTarea (int IdTarea)
     {
-         return View();
+        return View();
     }
 
     public IActionResult NuevaTarea ()
     {
-         return View();   
+        return View();   
     }
 
         public IActionResult NuevaTareaGuardar ()// aca todo lo de la tarea
     {
-         return View();  //todo de la tarea, otra vez el ID lo auto genera 
+        return View();  //todo de la tarea, otra vez el ID lo auto genera 
     }
 
         public IActionResult ModificarTarea ()
     {
-         return View();   
+        return View();   
     }
 
         public IActionResult ModificarTareaGuardar () //todo lo modificado
     {
-         return View();   
+        return View();   
     }
 
         public IActionResult EliminarTarea ()
     {
-         return View();   
+        return View();   
     }
 
        public IActionResult FinalizarTarea ()
     {
-         return View();   
+        return View();   
     }
     
 

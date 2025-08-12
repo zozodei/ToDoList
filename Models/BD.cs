@@ -11,11 +11,10 @@ public static class BD
         int ID=-1;
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT ID FROM Usuarios WHERE email = @pUsername AND contraseña = @pContraseña";
+            string query = "SELECT ID FROM Usuarios WHERE Username = @pUsername AND contraseña = @pContraseña";
             ID = connection.QueryFirstOrDefault<int>(query, new {pUsername = Username, pContraseña = Contraseña});
         }
         return ID;
-
     }
 
      public static void Registro(Usuario User)
@@ -61,8 +60,6 @@ public static class BD
                  string query = "SELECT * FROM Tarea WHERE IdTarea = @IdTarea";
                 TareaVer = connection.Query<Tarea>(query, new { IdTarea }).ToTarea();    // no sabemos como poner esto hay qye revisar. 
         }
-        
-
        
     } 
 
