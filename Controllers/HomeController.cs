@@ -33,24 +33,39 @@ public class HomeController : Controller
          return View();  //todo de la tarea, otra vez el ID lo auto genera 
     }
 
-        public IActionResult ModificarTarea ()
+
+
+
+        public IActionResult ModificarTarea (Tarea tarea)
     {
-         return View();   
+        BD.ModificarTarea(tarea);
+        
+         return View("VerTareas");   
     }
+
+
 
         public IActionResult ModificarTareaGuardar () //todo lo modificado
     {
-         return View();   
+         return View("VerTareas");   
     }
 
-        public IActionResult EliminarTarea ()
+
+
+        public IActionResult EliminarTarea (int IdTarea)
     {
-         return View();   
+            BD.EliminarTarea(IdTarea);
+
+         return View("VerTareas");   
     }
 
-       public IActionResult FinalizarTarea ()
+       public IActionResult FinalizarTarea (Tarea tarea)
     {
-         return View();   
+        if (tarea.Finalizado != True) 
+        {
+             BD.MarcasTareaComoFinalizada(IdTarea);
+        }
+         return View("VerTareas");   
     }
     
 
