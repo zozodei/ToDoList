@@ -25,35 +25,50 @@ public class HomeController : Controller
         return View("VerTareas.cshtml");
     }
 
-    public IActionResult NuevaTarea (Tarea Tarea)
+    public IActionResult NuevaTarea ()
     {
-        BD.AgregarTarea(Tarea);
-        return View();   
+        return View("CrearTarea.cshtml");   
     }
 
-        public IActionResult NuevaTareaGuardar ()// aca todo lo de la tarea
+    public IActionResult NuevaTareaGuardar (Tarea tarea)
     {
+        BD.AgregarTarea(tarea);
         return View();  //todo de la tarea, otra vez el ID lo auto genera 
     }
 
-        public IActionResult ModificarTarea ()
+
+
+
+        public IActionResult ModificarTarea (Tarea tarea)
     {
-        return View();   
+        BD.ModificarTarea(tarea);
+        
+         return View("VerTareas");   
     }
+
+
 
         public IActionResult ModificarTareaGuardar () //todo lo modificado
     {
-        return View();   
+         return View("VerTareas");   
     }
 
-        public IActionResult EliminarTarea ()
+
+
+        public IActionResult EliminarTarea (int IdTarea)
     {
-        return View();   
+            BD.EliminarTarea(IdTarea);
+
+         return View("VerTareas");   
     }
 
-       public IActionResult FinalizarTarea ()
+       public IActionResult FinalizarTarea (Tarea tarea)
     {
-        return View();   
+        if (tarea.Finalizado != True) 
+        {
+             BD.MarcasTareaComoFinalizada(IdTarea);
+        }
+         return View("VerTareas");   
     }
     
 
