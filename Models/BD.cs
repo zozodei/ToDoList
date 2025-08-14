@@ -37,11 +37,11 @@ public static class BD
 
     public static void ModificarTarea (Tarea tarea) 
     {
-         string query = "UPDATE Tarea SET Titulo = @tarea.Titulo, Descripcion = @tarea.Descripcion, FechaTarea = @tarea.FechaTarea, Finalizado = @tarea.Finalizado"
+         string query = "UPDATE Tarea SET Titulo = @tarea.Titulo, Descripcion = @tarea.Descripcion, FechaTarea = @tarea.FechaTarea, Finalizado = @tarea.Finalizado";
 
          using (SqlConnection connection = new SqlConnection(_connectionString))
          {
-            connection.Execute (query, new {pTitulo = tarea.Titulo ,pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = tarea.Finalizado})
+            connection.Execute (query, new {pTitulo = tarea.Titulo ,pDescripcion = tarea.Descripcion, pFechaTarea = tarea.FechaTarea, pFinalizado = tarea.Finalizado});
          }
     }
 

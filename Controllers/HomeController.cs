@@ -33,27 +33,20 @@ public class HomeController : Controller
     public IActionResult NuevaTareaGuardar (Tarea tarea)
     {
         BD.AgregarTarea(tarea);
-        return View();  //todo de la tarea, otra vez el ID lo auto genera 
+        return View();  
     }
 
-
-
-
-        public IActionResult ModificarTarea (Tarea tarea)
+        public IActionResult ModificarTarea ()
     {
-        BD.ModificarTarea(tarea);
         
-         return View("VerTareas");   
+         return View("ModificarTarea");   
     }
 
-
-
-        public IActionResult ModificarTareaGuardar () //todo lo modificado
+        public IActionResult ModificarTareaGuardar (Tarea tarea) //todo lo modificado
     {
+         BD.ModificarTarea(tarea);
          return View("VerTareas");   
     }
-
-
 
         public IActionResult EliminarTarea (int IdTarea)
     {
@@ -61,12 +54,11 @@ public class HomeController : Controller
 
          return View("VerTareas");   
     }
-
        public IActionResult FinalizarTarea (Tarea tarea)
     {
-        if (tarea.Finalizado != True) 
+        if (tarea.Finalizado != true) 
         {
-             BD.MarcasTareaComoFinalizada(IdTarea);
+             BD.MarcasTareaComoFinalizada(tarea);
         }
          return View("VerTareas");   
     }

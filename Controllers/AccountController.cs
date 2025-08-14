@@ -13,41 +13,36 @@ public class AccountController : Controller
         _logger = logger;
     }
 
-    public IActionResult Login (string Email, String Contraseña) 
+    public IActionResult Login () 
     {
-        int id = BD.Login (Email, Contraseña);
+        return View ("Login"); //no va asi pero lo pongo para que no tire error
+    }
+
+    public IActionResult LoginGuardar(string Username, string Contraseña) 
+    {
+        int id = BD.Login (Username, Contraseña);
         if (id >-1)
         {
             HttpContext.Session.SetString ("IdUsario", id.ToString());
-            return View ("Logueado"); //en este caso tendria que ir a ver las tareas
+            return View ("VerTareas"); //en este caso tendria que ir a ver las tareas
             //ademas se tiene que guardar la ultima fecha de logiado (Actualizar)
-
         }
         else
         {
-            return View("Index");
+            return View("Login");
         } 
     }
-
-    public IActionResult LoginGuardar() 
-    {
-        
-        return View ("Index"); //no va asi pero lo pongo para que no tire error
-    }
-
     
-    public IActionResult Registro (Usuario User) 
+    public IActionResult Registro () 
+    {
+         return View ("Registro"); //no va asi pero lo pongo para que no tire error
+        //todo la ultima fecha de login (xq la ultima fecha no existe en este caso, si recien entro xd)
+    }
+     public IActionResult RegistroGuardarse(Usuario User)
     {
         BD.Registro(User);
-        HttpContext.Session.SetString("IdUsuario", User.IdUsario.ToString());
-        return View ("Login");
-    }
-
-    
-    public IActionResult RegistroGuardarse() 
-    {
-        return View ("Index"); //no va asi pero lo pongo para que no tire error
-        //todo la ultima fecha de login (xq la ultima fecha no existe en este caso, si recien entro xd)
+        HttpContext.Session.SetString("IdUsuario", User.IdUsuario.ToString());
+        return View ("VerTareas"); 
     }
 
     public IActionResult cerrarSesion () 
@@ -55,9 +50,6 @@ public class AccountController : Controller
         HttpContext.Session.Remove("IdUsuario");
         return View ("Index"); 
     }
-
-
-
 
 }
 
