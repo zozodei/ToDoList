@@ -1,7 +1,9 @@
 Aca va el formulario que pide todo lo necesario (menos id de usuario ni de la tarea)
 
 <form action='@Url.Action("NuevaTareaGuardar", "Home")' method = "POST" enctype="multipart/form-data">
-Usuario: <input type="text" name = "usuario">
+Usuario: <input type="text" name = "usuario" value= @ViewBag>
 Contraseña: <input type="password" name = "contraseña">
 <input type ="submit" value = "Entrar">
 </form>
+
+HAY QUE CAMBIAR LA INFO DE ESTO Y ESO 

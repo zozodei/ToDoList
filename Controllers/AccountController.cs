@@ -13,6 +13,40 @@ public class AccountController : Controller
         _logger = logger;
     }
 
+    private readonly IWebHostEnvironment _env;
+
+    public AccountController(IWebHostEnvironment env) 
+    {
+        _env = env;
+    }
+
+    public IActionResult SubirArchivo (IFormFile archivo) 
+    {
+        if (archivo != null && archivo.Length > 0) 
+        {
+            string NombreArchivo = archivo.FileName;
+            
+            string RutaCarpeta = Path.Combine(_env.WebRootPath, "imagenes");
+
+            if (!Directory.Exists(RutaCarpeta)) 
+            {
+                Directory.CreateDirectory(RutaCarpeta);
+            }
+
+            string rutaCompleta = Path.Combine(RutaCarpeta, NombreArchivo);
+
+            using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+            {
+                archivo.CopyTo(stream);
+            }
+
+            return View ("VerTareas");
+        }
+
+        ViewBag.Mensaje = "No se selecciono ningun archivo";
+        return View ("VerTareas");
+    }
+
     public IActionResult Login () 
     {
         return View ("Login"); //no va asi pero lo pongo para que no tire error
@@ -38,7 +72,7 @@ public class AccountController : Controller
          return View ("Registro"); //no va asi pero lo pongo para que no tire error
         //todo la ultima fecha de login (xq la ultima fecha no existe en este caso, si recien entro xd)
     }
-     public IActionResult RegistroGuardarse(Usuario User)
+     public IActionResult RegistroGuardarse(Usuario User, IFormFile Foto)
     {
         BD.Registro(User);
         HttpContext.Session.SetString("IdUsuario", User.IdUsuario.ToString());

@@ -1,1 +1,21 @@
-<h1>PENEE2</h1>
+<h1>Registrarse</h1>
+<form action='@Url.Action("RegistroGuardarse", "Account")' method = "POST" enctype="multipart/form-data">
+    <label>Nombre</label>
+    
+     <input type="text" name="Nombre" required />
+    
+        <label>Apellido</label>
+        <input type="text" name="Apellido" required />
+    
+        <label>Username</label>
+        <input type="text" name="Username" required />
+    
+        <label>Contraseña</label>
+        <input type="password" name="Contraseña" required minlength="8"/>
+    
+        <label>Foto</label>
+        <input type="file" name="Foto" />
+        
+    <input type ="submit" value = "Entrar">
+    </form>
+    

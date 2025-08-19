@@ -19,7 +19,7 @@ public static class BD
 
      public static void Registro(Usuario User)
     {
-        string query = "INSERT INTO Usuario (IdUsuario, Nombre, Apellido, Username, Foto, FechaUltimoInicio, Contraseña) VALUES (@pIdUsuario, @pNombre, @pApellido, @pUsername, @pFoto, @pFechaUltimoInicio, @pContraseña)";
+        string query = "INSERT INTO Usuario ( Nombre, Apellido, Username, Foto, FechaUltimoInicio, Contraseña) VALUES (@pNombre, @pApellido, @pUsername, @pFoto, @pFechaUltimoInicio, @pContraseña)";
         using (SqlConnection connection = new SqlConnection (_connectionString))
         {
             connection.Execute(query, new {pIdUsuario = User.IdUsuario, pNombre = User.Nombre ,pApellido = User.Apellido, pUsername = User.Username, pFoto = User.Foto, pFechaUltimoInicio = User.FechaUltimoInicio, pContraseña = User.Contraseña });

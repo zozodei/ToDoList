@@ -1,6 +1,12 @@
-<h1>PENEEEEE</h1>
+<h1>Ingresar sesión</h1>
 <form action='@Url.Action("LoginGuardar", "Account")' method = "POST" enctype="multipart/form-data">
-Usuario: <input type="text" name = "usuario">
-Contraseña: <input type="password" name = "contraseña">
-<input type ="submit" value = "Entrar">
+
+    <label>Usuario:</label>
+    <input type="text" name = "usuario" required>
+    
+    <label>Contraseña:</label>
+    <input type="password" name = "contraseña" required minlength="8">
+    
+    <input type ="submit" value = "Entrar">
+    
 </form>
