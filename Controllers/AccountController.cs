@@ -39,7 +39,7 @@ public class AccountController : Controller
     public IActionResult Registro (Usuario User) 
     {
         BD.Registro(User);
-        HttpContext.Session.SetString("IdUsuario", User.IdUsario.ToString());
+        HttpContext.Session.SetString("IdUsuario", User.IdUsuario.ToString());
         return View ("Login");
     }
 

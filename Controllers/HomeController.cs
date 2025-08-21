@@ -64,9 +64,9 @@ public class HomeController : Controller
 
        public IActionResult FinalizarTarea (Tarea tarea)
     {
-        if (tarea.Finalizado != True) 
+        if (tarea.Finalizado != true) 
         {
-             BD.MarcasTareaComoFinalizada(IdTarea);
+             BD.MarcasTareaComoFinalizada(tarea);
         }
          return View("VerTareas");   
     }
