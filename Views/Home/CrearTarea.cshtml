@@ -1,1 +1,10 @@
-Aca va el formulario que pide todo lo necesario (menos id de usuario ni de la tarea)
+<p>@ViewBag.Mensaje</p>
+<form action='@Url.Action("NuevaTareaGuardar", "Home")' method = "POST" enctype="multipart/form-data">
+
+    <label>Titulo:</label> <input type="text" name = "Titulo" required>
+    <label>Descripcion:</label> <input type="text" name = "Descripcion" required>
+    <label>Fecha:</label> <input type="date" name = "FechaTarea" required>
+
+    <input type ="submit" value = "Agregar tarea">
+
+</form>

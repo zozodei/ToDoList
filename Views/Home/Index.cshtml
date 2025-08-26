@@ -1,11 +1,15 @@
-﻿
-<div class = 'Inicio'>
+﻿<div class = 'Inicio'>
     <h1>Seleccione la opcion que deseea</h1>
 
-    <div> <a href="Login.cshtml">Inicio de Sesion</a>
+    <div>
+
+        <a href='@Url.Action("Login", "Account")'>Login</a>
+
     </div>
 
     <div>
-    <a href="Registro.cshtml">Registrarse</a>
-     </div>
+
+        <a href='@Url.Action("Registro", "Account")'>Registrarse</a>
+
+    </div>
 </div>

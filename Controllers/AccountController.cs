@@ -6,58 +6,77 @@ namespace ToDoList.Controllers;
 
 public class AccountController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IWebHostEnvironment _env;
 
-    public AccountController(ILogger<HomeController> logger)
+    public AccountController(IWebHostEnvironment env) 
     {
-        _logger = logger;
+        _env = env;
     }
 
-    public IActionResult Login (string Email, String Contraseña) 
+    
+    public IActionResult Login () 
     {
-        int id = BD.Login (Email, Contraseña);
-        if (id >-1)
-        {
-            HttpContext.Session.SetString ("IdUsario", id.ToString());
-            return View ("Logueado"); //en este caso tendria que ir a ver las tareas
-            //ademas se tiene que guardar la ultima fecha de logiado (Actualizar)
+        return View ("Login"); //no va asi pero lo pongo para que no tire error
+    }
 
+    public IActionResult LoginGuardar(string Username, string Contraseña)
+    {
+        if (!BD.existeUsuario(Username))
+        {
+            return View("Login");
         }
         else
         {
-            return View("Index");
-        } 
+            int id = BD.Login(Username, Contraseña);
+            if (id > -1)
+            {
+                HttpContext.Session.SetString("IdUsuario", id.ToString());
+                return RedirectToAction("VerTareas", "Home");
+                //en este caso tendria que ir a ver las tareas
+                //ademas se tiene que guardar la ultima fecha de logiado (Actualizar)
+            }
+            else
+            {
+                return View("Login");
+            }
+        }
     }
-
-    public IActionResult LoginGuardar() 
-    {
-        
-        return View ("Index"); //no va asi pero lo pongo para que no tire error
-    }
-
     
-    public IActionResult Registro (Usuario User) 
+    public IActionResult Registro () 
     {
-        BD.Registro(User);
-        HttpContext.Session.SetString("IdUsuario", User.IdUsuario.ToString());
-        return View ("Login");
-    }
-
-    
-    public IActionResult RegistroGuardarse() 
-    {
-        return View ("Index"); //no va asi pero lo pongo para que no tire error
+         return View ("Registro"); //no va asi pero lo pongo para que no tire error
         //todo la ultima fecha de login (xq la ultima fecha no existe en este caso, si recien entro xd)
     }
-
-    public IActionResult cerrarSesion () 
+    public IActionResult RegistroGuardarse(IFormFile Foto, string Nombre, string Apellido, string Username, string Contraseña) //no se q hacer con la foto
     {
-        HttpContext.Session.Remove("IdUsuario");
-        return View ("Index"); 
+        string NombreArchivo ="";
+        if (Foto != null && Foto.Length > 0) 
+        {
+            NombreArchivo = Foto.FileName;
+            string RutaCarpeta = Path.Combine(_env.WebRootPath, "imagenes");
+
+            if (!Directory.Exists(RutaCarpeta)) 
+            {
+                Directory.CreateDirectory(RutaCarpeta);
+            }
+
+            string rutaCompleta = Path.Combine(RutaCarpeta, NombreArchivo);
+
+            using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+            {
+            Foto.CopyTo(stream);
+            }
+        }
+        BD.Registro(Nombre, Apellido, Username, Contraseña, NombreArchivo);
+        return RedirectToAction ("SubirArchivo", "Account", new {archivo = Foto});
     }
 
-
-
+    public IActionResult cerrarSesion()
+    {
+        HttpContext.Session.Remove("IdUsuario");
+        return RedirectToAction("Index", "Home");
+        //return View ("Index");
+    }
 
 }
 

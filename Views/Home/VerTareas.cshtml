@@ -1,1 +1,24 @@
+@using Microsoft.AspNetCore.Mvc.Routing
 Aca va (botones de eliminarla, modificarla, finalizarla, crear mas)
+@foreach (Tarea tarea in ViewBag.Tareas)
+{
+    <div>
+        <p>Titulo: @tarea.Titulo</p>
+        <p>Descripción: @tarea.Descripcion | ID: @tarea.IdTarea</p>
+        <p>Fecha: @tarea.FechaTarea.ToString("dd/MM/yyyy")</p>
+        <p>Finalizado: @(tarea.Finalizado ? "Sí" : "No")</p>
+        <button><a href='@Url.Action("EliminarTarea", "Home", new {IdTarea = tarea.IdTarea})'>Eliminar tarea</a></button>
+        <button><a href='@Url.Action("FinalizarTarea", "Home", new {IdTarea = tarea.IdTarea})'>Marcar como finalizada</a></button>
+        <button><a href='@Url.Action("ModificarTarea", "Home", new {IdTarea = tarea.IdTarea})'>Modificar tarea</a></button>
+        <button><a href='@Url.Action("CompartirTareaView", "Home", new {IdTarea = tarea.IdTarea})'>Compartir tarea</a></button>
+        <p>@ViewBag.MensajeCompartir</p>
+    </div>
+}
+@if (ViewBag.Usuario.Foto != null)
+{
+    <img src="/imagenes/@ViewBag.Usuario.Foto" alt="">
+}
+
+<button><a href='@Url.Action("NuevaTarea", "Home")'>Crear nueva tarea</a></button>
+<br>
+<a href='@Url.Action("cerrarSesion", "Account")'>Cerrar sesión</a>
