@@ -9,17 +9,12 @@
 </head>
 
 <body>
-    <header>
-        NombreProyecto
-    </header>
-
+    <header> <img src="imagenes/logo.png" alt="Logo"> <nav> <ul> <li><a href="VerTareas.cshtml">Tareas</a></li> <li><a href="CrearTarea.cshtml">Crear Tarea</a></li> <li><a href="CompartirTarea.cshtml">Compartir Tarea</a></li> <li><a href="ModificarTarea.cshtml">Modificar Tarea</a></li> </ul> </header>
     <main role="main">
         @RenderBody()
     </main>
 
-    <footer>
-        &copy; @DateTime.Now.Year - NombreProyecto
-    </footer>
+   <footer> <img src="imagenes/logo.png" alt="Logo"> <h2> Trabajo de: </h2> <h1> Zoe Acquistapace</h1> <h1> Manuel Mandel</h1> <h1> Facundo Cardoso</h1> </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,11 +1,18 @@
+<div class = "ModificarTarea"> 
 <p>@ViewBag.Mensaje</p>
 <form action='@Url.Action("ModificarTareaGuardar", "Home")' method = "POST" enctype="multipart/form-data">
 
+
     <input type="hidden" name="IdTarea" value="@ViewBag.tarea.IdTarea" />
+
 
     <label>Titulo:</label> <input type="text" name = "Titulo" value="@ViewBag.tarea.Titulo" required>
     <label>Descripcion:</label> <input type="text" name = "Descripcion" value="@ViewBag.tarea.Descripcion" required>
     <label>Fecha:</label> <input type="date" name = "FechaTarea" value="@ViewBag.tarea.FechaTarea.ToString("yyyy-MM-dd")" required>
 
+
     <input type ="submit" value = "Modificar tarea">
 </form>
+</div>
+
+

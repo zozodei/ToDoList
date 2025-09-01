@@ -1,5 +1,6 @@
+
+<div class = "VerTareas"> 
 @using Microsoft.AspNetCore.Mvc.Routing
-Aca va (botones de eliminarla, modificarla, finalizarla, crear mas)
 @foreach (Tarea tarea in ViewBag.Tareas)
 {
     <div>
@@ -19,6 +20,11 @@ Aca va (botones de eliminarla, modificarla, finalizarla, crear mas)
     <img src="/imagenes/@ViewBag.Usuario.Foto" alt="">
 }
 
+
 <button><a href='@Url.Action("NuevaTarea", "Home")'>Crear nueva tarea</a></button>
 <br>
 <a href='@Url.Action("cerrarSesion", "Account")'>Cerrar sesión</a>
+
+
+</div>
+

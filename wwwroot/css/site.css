@@ -3,11 +3,13 @@ html {
   min-height: 100%;
 }
 
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
+
 
 body {
   margin: 10px;
@@ -15,9 +17,911 @@ body {
 }
 
 
-footer {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
+
+
+/* HEADER */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, rgb(46, 204, 113), rgb(52, 152, 219));
+  padding: 1rem 3rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+header img {
+  height: 70px; 
+  width: auto;
+}
+
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+
+nav ul li a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+}
+
+
+
+
+nav ul li a:hover {
+  background-color: rgb(243, 156, 18); 
+  color: rgb(44, 62, 80);
+  transform: translateY(-3px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+
+nav ul li a:active {
+  background-color: rgb(255, 220, 120); 
+  transform: scale(0.95);
+}
+
+
+
+
+/*FOOTER*/
+
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgb(46, 204, 113), rgb(52, 152, 219));
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
+  margin-top: 2rem;
+}
+
+
+footer img {
+  height: 60px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+
+footer h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+
+footer h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.3rem 0;
+  background: rgba(255,255,255,0.15);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+
+footer h1:hover {
+  background-color: rgb(243, 156, 18); 
+  color: rgb(44, 62, 80); 
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+}
+
+
+
+
+/*INDEX*/
+.inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px); 
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.inicio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/imagenes/fondo.png") no-repeat center center/cover;
+  z-index: -2;
+}
+
+
+.inicio::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6));
+  z-index: -1;
+}
+
+
+.inicio h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+}
+
+
+.inicio div {
+  margin: 1rem 0;
+}
+
+
+.inicio a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: rgb(44, 62, 80); 
+  background: white; 
+  border: 3px solid rgb(46, 204, 113); 
+  padding: 1rem 3rem;
+  border-radius: 50px; 
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.inicio a:hover {
+  background: linear-gradient(90deg, rgb(46, 204, 113), rgb(52, 152, 219));
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+
+.inicio a:active {
+  background: rgb(243, 156, 18);
+  border-color: rgb(243, 156, 18);
+  transform: scale(0.95);
+}
+
+
+
+
+
+
+/*Inicio Sesion*/
+
+
+.InicioSesion {
+  min-height: calc(100vh - 160px); /* toda la pantalla menos header/footer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+
+
+  /* Fondo igual que el index */
+  background-image:
+    linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6)),
+    url("/imagenes/fondo.png"); /* ajusta la ruta según tu estructura */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Caja del formulario */
+.InicioSesion form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+
+/* Título */
+.InicioSesion h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+}
+
+
+/* Labels */
+.InicioSesion label {
+  text-align: left;
+  font-weight: 600;
+  color: rgb(44, 62, 80); /* Azul oscuro */
+}
+
+
+/* Inputs */
+.InicioSesion input[type="text"],
+.InicioSesion input[type="password"] {
+  padding: 0.8rem 1rem;
+  border: 2px solid rgb(46, 204, 113); /* Verde */
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+
+.InicioSesion input[type="text"]:focus,
+.InicioSesion input[type="password"]:focus {
+  border-color: rgb(52, 152, 219); /* Azul */
+  box-shadow: 0 0 8px rgba(52,152,219,0.4);
+}
+
+
+/* Botón submit */
+.InicioSesion input[type="submit"] {
+  background: linear-gradient(90deg, rgb(46, 204, 113), rgb(52, 152, 219));
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.InicioSesion input[type="submit"]:hover {
+  background: rgb(243, 156, 18); /* Amarillo */
+  color: rgb(44, 62, 80);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+
+.InicioSesion input[type="submit"]:active {
+  background: rgb(255, 220, 120);
+  transform: scale(0.95);
+}
+
+
+
+
+/*REGISTRARSE*/
+.Registrarse {
+  min-height: calc(100vh - 160px); /* ocupa toda la pantalla menos header/footer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+
+
+  
+  background-image:
+    linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6)),
+    url("/imagenes/fondo.png"); /* ajusta la ruta */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.Registrarse form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+
+/* Título */
+.Registrarse h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: rgb(44, 62, 80);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+
+/* Labels */
+.Registrarse label {
+  text-align: left;
+  font-weight: 600;
+  color: rgb(44, 62, 80);
+  margin-bottom: 0.3rem;
+}
+
+
+/* Inputs texto y password */
+.Registrarse input[type="text"],
+.Registrarse input[type="password"] {
+  padding: 0.8rem 1rem;
+  border: 2px solid rgb(46, 204, 113);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+
+.Registrarse input[type="text"]:focus,
+.Registrarse input[type="password"]:focus {
+  border-color: rgb(52, 152, 219);
+  box-shadow: 0 0 8px rgba(52,152,219,0.4);
+}
+
+
+/* Input archivo (foto) */
+.Registrarse input[type="file"] {
+  padding: 0.5rem;
+  border: 2px dashed rgb(46, 204, 113);
+  border-radius: 8px;
+  background: rgba(46,204,113,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.Registrarse input[type="file"]:hover {
+  background: rgba(52,152,219,0.1);
+  border-color: rgb(52, 152, 219);
+}
+
+
+/* Botón submit */
+.Registrarse input[type="submit"] {
+  margin-top: 1rem;
+  background: linear-gradient(90deg, rgb(46, 204, 113), rgb(52, 152, 219));
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.Registrarse input[type="submit"]:hover {
+  background: rgb(243, 156, 18);
+  color: rgb(44, 62, 80);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+
+.Registrarse input[type="submit"]:active {
+  background: rgb(255, 220, 120);
+  transform: scale(0.95);
+}
+
+
+
+
+/*COMPARTIR TAREA*/
+
+
+.CompartirTarea {
+  min-height: calc(100vh - 160px); /* toda la pantalla menos header/footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+
+  /* Fondo coherente con el resto */
+  background-image:
+    linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6)),
+    url("/imagenes/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Tarjeta estilo Trello */
+.CompartirTarea form {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 500px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+
+/* Mensaje */
+.CompartirTarea p {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgb(44, 62, 80);
+}
+
+
+/* Labels */
+.CompartirTarea label {
+  font-weight: 600;
+  color: rgb(44, 62, 80);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+
+/* Input estilo moderno */
+.CompartirTarea input[type="text"] {
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.CompartirTarea input[type="text"]:focus {
+  border-color: rgb(52, 152, 219);
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+
+
+/* Botón estilo Trello */
+.CompartirTarea input[type="submit"] {
+  background: rgb(46, 204, 113);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.CompartirTarea input[type="submit"]:hover {
+  background: rgb(52, 152, 219);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+.CompartirTarea input[type="submit"]:active {
+  background: rgb(243, 156, 18);
+  transform: scale(0.95);
+}
+
+
+
+
+/*CREAR TAREA*/
+.crearTarea {
+  min-height: calc(100vh - 160px); /* toda la pantalla menos header/footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+
+  /* Fondo coherente */
+  background-image:
+    linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6)),
+    url("/imagenes/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Tarjeta estilo tablero */
+.crearTarea form {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 500px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+
+/* Mensaje superior */
+.crearTarea p {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgb(44, 62, 80);
+}
+
+
+/* Labels */
+.crearTarea label {
+  font-weight: 600;
+  color: rgb(44, 62, 80);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+
+/* Inputs */
+.crearTarea input[type="text"],
+.crearTarea input[type="date"] {
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.crearTarea input[type="text"]:focus,
+.crearTarea input[type="date"]:focus {
+  border-color: rgb(52, 152, 219);
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+
+
+/* Botón submit */
+.crearTarea input[type="submit"] {
+  background: rgb(46, 204, 113);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.crearTarea input[type="submit"]:hover {
+  background: rgb(52, 152, 219);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+.crearTarea input[type="submit"]:active {
+  background: rgb(243, 156, 18);
+  transform: scale(0.95);
+}
+
+
+
+
+/*Modificar Tarea*/
+
+
+.ModificarTarea {
+  min-height: calc(100vh - 160px); /* toda la pantalla menos header/footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+
+  /* Fondo coherente */
+  background-image:
+    linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6)),
+    url("/imagenes/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Tarjeta */
+.ModificarTarea form {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 500px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  border-top: 6px solid rgb(52, 152, 219); /* detalle de color para edición */
+}
+
+
+/* Mensaje */
+.ModificarTarea p {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgb(44, 62, 80);
+}
+
+
+/* Labels */
+.ModificarTarea label {
+  font-weight: 600;
+  color: rgb(44, 62, 80);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+
+/* Inputs */
+.ModificarTarea input[type="text"],
+.ModificarTarea input[type="date"] {
+  padding: 0.9rem 1rem;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fdfdfd;
+}
+
+
+.ModificarTarea input[type="text"]:focus,
+.ModificarTarea input[type="date"]:focus {
+  border-color: rgb(52, 152, 219);
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+
+
+/* Botón */
+.ModificarTarea input[type="submit"] {
+  background: rgb(52, 152, 219); /* Azul base */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.ModificarTarea input[type="submit"]:hover {
+  background: rgb(46, 204, 113); /* Verde */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+.ModificarTarea input[type="submit"]:active {
+  background: rgb(243, 156, 18); /* Amarillo */
+  transform: scale(0.95);
+}
+
+
+
+
+/*VER TAREAS*/
+
+
+.VerTareas {
+  min-height: calc(100vh - 160px);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+
+
+  /* Fondo coherente con el resto */
+  background-image:
+    linear-gradient(90deg, rgba(46,204,113,0.6), rgba(52,152,219,0.6)),
+    url("/imagenes/fondo.png"); /* ajusta ruta si es necesario */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+
+/* ===== TARJETAS DE TAREA (cada <div> del foreach) ===== */
+.VerTareas > div {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+
+/* Tipografía dentro de la tarjeta */
+.VerTareas > div p {
+  margin: 0;
+  color: rgb(44, 62, 80);
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+
+/* “Titulo:” un poco más fuerte */
+.VerTareas > div p:first-child {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+
+/* ===== ACCIONES (botones/links) ===== */
+/* Tu HTML usa <button><a>…</a></button>. 
+   Los volvemos “botón” estilizando el <a> */
+.VerTareas > div button {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+
+.VerTareas > div button a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  margin: 0.25rem 0.25rem 0 0; /* separa botones */
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* Colores por acción (según el href) */
+.VerTareas > div a[href*="EliminarTarea"] {
+  background: rgb(231, 76, 60);         /* Rojo */
+}
+.VerTareas > div a[href*="FinalizarTarea"] {
+  background: rgb(46, 204, 113);        /* Verde */
+}
+.VerTareas > div a[href*="ModificarTarea"] {
+  background: rgb(52, 152, 219);        /* Azul */
+}
+.VerTareas > div a[href*="CompartirTarea"] {
+  background: rgb(243, 156, 18);        /* Amarillo/Naranja */
+  color: rgb(44, 62, 80);
+}
+
+
+.VerTareas > div button a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+}
+.VerTareas > div button a:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+
+/* ===== MENSAJE DE COMPARTIR DENTRO DE CADA TARJETA ===== */
+.VerTareas > div p:last-child {
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  color: rgb(44, 62, 80);
+  opacity: 0.9;
+}
+
+
+/* ===== AVATAR DEL USUARIO (si existe) ===== */
+.VerTareas img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.7);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  justify-self: center;  /* centra en el grid */
+}
+
+
+/* ===== CTA “CREAR NUEVA TAREA” (botón fuera del foreach) ===== */
+.VerTareas > button {
+  justify-self: center; /* queda lindo centrado en el grid */
+}
+.VerTareas > button > a {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(90deg, rgb(46, 204, 113), rgb(52, 152, 219));
+  color: #fff;
+  font-weight: 800;
+  padding: 0.9rem 1.4rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.VerTareas > button > a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+}
+.VerTareas > button > a:active {
+  transform: scale(0.97);
+}
+
+
+/* ===== LINK “CERRAR SESIÓN” ===== */
+.VerTareas > a[href*="cerrarSesion"] {
+  justify-self: center;
+  text-decoration: none;
+  color: white;
+  background: rgba(255,255,255,0.18);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(3px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.VerTareas > a[href*="cerrarSesion"]:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+
