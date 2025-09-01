@@ -47,7 +47,7 @@ public class AccountController : Controller
          return View ("Registro"); //no va asi pero lo pongo para que no tire error
         //todo la ultima fecha de login (xq la ultima fecha no existe en este caso, si recien entro xd)
     }
-    public IActionResult RegistroGuardarse(IFormFile Foto, string Nombre, string Apellido, string Username, string Contraseña) //no se q hacer con la foto
+    public IActionResult RegistroGuardarse(IFormFile Foto, string Nombre, string Apellido, string Username, string Contraseña)
     {
         string NombreArchivo ="";
         if (Foto != null && Foto.Length > 0) 
@@ -68,7 +68,7 @@ public class AccountController : Controller
             }
         }
         BD.Registro(Nombre, Apellido, Username, Contraseña, NombreArchivo);
-        return RedirectToAction ("SubirArchivo", "Account", new {archivo = Foto});
+        return RedirectToAction ("Login", "Account");
     }
 
     public IActionResult cerrarSesion()
